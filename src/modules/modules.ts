@@ -7,6 +7,7 @@ interface IMovie extends Document {
   genres: string;
   language: string;
   rating: number;
+  active: boolean;
 }
 
 const movieSchema: Schema = new Schema({
@@ -25,6 +26,10 @@ const movieSchema: Schema = new Schema({
   },
   rating: {
     type: Number,
+  },
+  active: {
+    type: Boolean,
+    default: true,
   },
 });
 

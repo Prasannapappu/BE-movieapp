@@ -3,9 +3,12 @@ import {
   getMovie,
   getMovieId,
   getSearch,
+  deleteMovie,
+  updateMovieList,
 } from "../services/service";
 
 const createMovie = async (req: any, res: any) => {
+  console.log(req);
   const movieData = await creatMovieData(req.body);
   res.send(movieData);
 };
@@ -25,4 +28,21 @@ const movieSearch = async (req: any, res: any) => {
   res.send(search);
 };
 
-export { createMovie, getAllMovie, getIdbyMovie, movieSearch };
+const movieDel = async (req: any, res: any) => {
+  const del = await deleteMovie(req.params.id);
+  res.send(del);
+};
+
+const updateMovie = async (req: any, res: any) => {
+  const updateData = await updateMovieList(req.params.id, req.body);
+  res.send(updateData);
+};
+
+export {
+  createMovie,
+  getAllMovie,
+  getIdbyMovie,
+  movieSearch,
+  movieDel,
+  updateMovie,
+};

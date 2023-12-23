@@ -30,4 +30,31 @@ const getSearch = async (movie: string) => {
   return movieId;
 };
 
-export { creatMovieData, getMovie, getMovieId, getSearch };
+const deleteMovie = async (id: string) => {
+  const findMovieId = await MovieModel.findById(id);
+  if (!findMovieId) {
+    console.log("user Not found");
+  }
+  const updateMovie = await MovieModel.findByIdAndDelete({ _id: id });
+  return updateMovie;
+};
+
+const updateMovieList = async (id: string, body: any) => {
+  const findMovieId = await MovieModel.findById(id);
+  if (!findMovieId) {
+    console.log("user Not found");
+  }
+  const updateData = await MovieModel.findByIdAndUpdate({ _id: id }, body, {
+    new: true,
+  });
+  return updateData;
+};
+
+export {
+  creatMovieData,
+  getMovie,
+  getMovieId,
+  getSearch,
+  deleteMovie,
+  updateMovieList,
+};
